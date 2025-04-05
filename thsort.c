@@ -31,10 +31,10 @@ char* readline() {
         exit(1);
     }
 
-    int idx = 0;
+    int i = 0;
     int character;
     while ((character = getchar()) != EOF) {
-        if (idx + 1 >= buf_size) {
+        if (i + 1 >= buf_size) {
             buf_size *= 2;
             text = realloc(text, buf_size);
             if (!text) {
@@ -42,16 +42,16 @@ char* readline() {
                 exit(1);
             }
         }
-        text[idx++] = character;
+        text[i++] = character;
         if (character == '\n') break;
     }
 
-    if (idx == 0 && character == EOF) {
+    if (i == 0 && character == EOF) {
         free(text);
         return NULL;
     }
 
-    text[idx] = '\0';
+    text[i] = '\0';
     return text;
 }
 
