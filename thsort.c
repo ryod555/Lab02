@@ -14,6 +14,8 @@ void printlines(char** lines, int num_lines);
 void freelines(char** lines, int num_lines);
 int cmp(const void* a, const void* b);
 
+
+// Main
 int main() {
     int line_total = 0;
     char** all_lines = readlines(&line_total);
@@ -23,6 +25,7 @@ int main() {
     return 0;
 }
 
+// Reads a single line of arbitrary length from stdin
 char* readline() {
     int buf_size = INITIAL_LINE_CAPACITY;
     char* text = malloc(buf_size);
@@ -55,6 +58,7 @@ char* readline() {
     return text;
 }
 
+// Reads all lines until encounters EOF
 char** readlines(int* num_lines) {
     int size = INITIAL_LINES_CAPACITY;
     char** storage = malloc(size * sizeof(char*));
@@ -80,12 +84,14 @@ char** readlines(int* num_lines) {
     return storage;
 }
 
+// Prints all lines to stdout
 void printlines(char** lines, int num_lines) {
     for (int i = 0; i < num_lines; i++) {
         printf("%s", lines[i]);
     }
 }
 
+// Frees memory allocated for lines
 void freelines(char** lines, int num_lines) {
     for (int j = 0; j < num_lines; j++) {
         free(lines[j]);
@@ -93,6 +99,7 @@ void freelines(char** lines, int num_lines) {
     free(lines);
 }
 
+// Comparison function for qsort
 int cmp(const void* a, const void* b) {
     const char* first = *(const char**)a;
     const char* second = *(const char**)b;
